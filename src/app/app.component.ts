@@ -1,21 +1,25 @@
-import {Component} from '@angular/core';
-import {Platform} from 'ionic-angular';
+import {Component,ViewChild} from '@angular/core';
+import {Platform,Nav} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
-import {TabsPage} from '../pages/tabs/tabs';
+import {Storage} from '@ionic/storage';
+import {AppConfig} from "./app.config";
 
 @Component({
     templateUrl: 'app.html'
 })
 export class MyApp {
-    rootPage: any = TabsPage;
-
+    @ViewChild(Nav) nav: Nav;
+    rootPage: any = 'MainPage';
     pages: any;
     params: any;
-    leftMenuTitle: string;
 
-    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    constructor(platform: Platform,
+                statusBar: StatusBar,
+                splashScreen: SplashScreen,
+                private storage:Storage
+    ) {
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
@@ -23,51 +27,26 @@ export class MyApp {
             splashScreen.hide();
         });
 
-        this.pages = this.getSidePages();
-        this.params = this.getDataForTheme();
-        console.log(this.params)
-
         this.initUser();
     }
 
     initUser(){
-        console.log('iss');
+        this.storage.get('user').then(user => {
+            if (user && !user.id){
+                this.storage.remove('user');
+                user = false;
+            }
+
+            AppConfig.globalNav = this.nav;
+            if (!user){
+                this.nav.push('LoginPage');
+            }else{
+                AppConfig.user = user;
+            }
+        });
     }
 
-    getSidePages = (): Array<any> => {
-        return [
-            {
-                "title": "event",
-                "page": "list",
-                "icon": "ios-list-box-outline",
-                "listView": true,
-                "component": "",
-                "singlePage": false
-            },
-            {
-                "title": "favourites",
-                "page": "contact",
-                "icon": "ios-lock-outline",
-                "listView": false,
-                "component": "",
-                "singlePage": false
-            },
-            {
-                "title": "Contact",
-                "page": "contact",
-                "icon": "ios-lock-outline",
-                "listView": false,
-                "component": "",
-                "singlePage": false
-            },
-        ];
-    }
 
-    getDataForTheme = () => {
-        return {
-            "background": "assets/images/background/16.jpg",
-            "image": "assets/images/logo/logo.png",
-            "title": "Chinese Mode"
-        };
-    };
+
+
 }

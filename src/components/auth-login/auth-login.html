@@ -1,0 +1,42 @@
+<!-- Themes Login + logo 1 -->
+<ion-content has-header *ngIf="data != null" background-size [ngStyle]="{'background-image': 'url(' + data.background + ')'}">
+  <ion-grid *ngIf="data != null">
+    <ion-row align-items-center>
+      <ion-col *ngIf="data.isShowHeader" padding-horizontal col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+        <button ion-button button-clear text-capitalize clear float-left no-padding (click)="onEvent('onSkip')">{{data.skip}}</button>
+        <button ion-button button-clear text-capitalize clear float-right no-padding (click)="onEvent('onForgot')">{{data.forgotPassword}}</button>
+      </ion-col>
+      <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+        <ion-item transparent no-lines no-padding margin-top>
+          <!---Logo-->
+          <img box-shadow item-start margin [src]="data.logo">
+          <!---Logo Subtitle-->
+          <h2 login-subtitle>{{data.subtitle}}</h2>
+          <!---Logo Title-->
+          <h1 ion-text login-title no-margin text-wrap>{{data.title}}</h1>
+        </ion-item>
+        <!---Form-->
+        <form padding-horizontal>
+          <!---Input field username-->
+          <ion-item margin-top transparent>
+            <ion-label stacked>{{data.labelEmail}}</ion-label>
+            <ion-input required type="text" placeholder="{{data.email}}" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isEmailValid">{{data.errorEmail}}</ion-label>
+          </ion-item>
+          <!---Input field password-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.labelPassword}}</ion-label>
+            <ion-input required type="password" placeholder="{{data.password}}" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label>
+          </ion-item>
+          <!---Login button-->
+          <button ion-button default-button full text-uppercase box-shadow (click)="onEvent('onLogin')">{{data.login}}</button>
+          <!-- Button Register Now-->
+          <div description text-center>
+            <p>Don't have account? <a text-capitalize (click)="onEvent('onRegister')">{{data.register}}</a></p>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

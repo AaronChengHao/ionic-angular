@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {AppConfig} from "../app/app.config";
 
 @Injectable()
 export class HttpService {
@@ -17,7 +18,7 @@ export class HttpService {
 
     public post(url: string, paramObj: any) {
         //x-www-form-urlencoded
-        let headers = new Headers({'Content-Type': 'application/json'});
+        let headers = new Headers({'Content-Type': 'application/json','Authorization':'Bearer ' + AppConfig.token});
         return this.http.post(url, paramObj, new RequestOptions({headers: headers}))
             .toPromise()
             .then(res => this.handleSuccess(res.json()))

@@ -1,0 +1,20 @@
+<ion-split-pane when="md">
+    <ion-menu [content]="content" *ngIf="params != null">
+        <ion-content>
+            <div header-background-image padding [ngStyle]="{'background-image': 'url(' + params.background + ')'}">
+                <img [src]="params.image">
+                <h2 ion-text color="light" header-title>{{params.title}}</h2>
+            </div>
+            <ion-list no-margin>
+                <button menuClose ion-item item-title main-menu no-lines border *ngFor="let p of pages"
+                        (click)="openPage(p)">
+                    <ion-icon icon-small item-left>
+                        <ion-icon name="{{p.icon}}"></ion-icon>
+                    </ion-icon>
+                    {{p.title}}
+                </button>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-nav [root]="rootPage" #content  main swipeBackEnabled="false" main></ion-nav>
+</ion-split-pane>

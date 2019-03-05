@@ -1,0 +1,87 @@
+<!-- Themes Register + logo -->
+<ion-header *ngIf="data.isShowHeader">
+  <ion-navbar transparent>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="data != null">{{data.toolbarTitle}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<!--Content -->
+<ion-content *ngIf="data != null" background-size [ngStyle]="{'background-image': 'url(' + data.background + ')'}">
+  <ion-grid *ngIf="data != null">
+    <ion-row no-padding align-items-center>
+      <!--<ion-col col-12 padding-horizontal>-->
+        <!--&lt;!&ndash;-Skip Button&ndash;&gt;-->
+        <!--<button ion-button text-capitalize button-clear clear float-right no-padding (click)="onEvent('onSkip')">{{data.skip}}</button>-->
+      <!--</ion-col>-->
+      <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+        <ion-item transparent no-lines no-padding margin-bottom>
+          <!---Logo-->
+          <img box-shadow item-start margin [src]="data.logo">
+          <!--Form Title-->
+          <h1 register-title text-wrap>{{data.title}}</h1>
+        </ion-item>
+        <!---Form-->
+        <form padding-horizontal>
+          <!---Input field email-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.lableEmail}}</ion-label>
+            <ion-input required placeholder="{{data.email}}" type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required [(ngModel)]="email" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isEmailValid">{{data.errorEmail}}</ion-label>
+          </ion-item>
+          <!---Input field username-->
+          <!--<ion-item transparent>-->
+            <!--<ion-label stacked>{{data.lableUsername}}</ion-label>-->
+            <!--<ion-input required placeholder="{{data.username}}" type="text" [(ngModel)]="username" [ngModelOptions]="{standalone: true}"></ion-input>-->
+            <!--<ion-label error-field no-margin *ngIf="!isUsernameValid">{{data.errorUser}}</ion-label>-->
+          <!--</ion-item>-->
+          <!---Input field password-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.lablePassword}}</ion-label>
+            <ion-input required placeholder="{{data.password}}" type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isPasswordValid">{{data.errorPassword}}</ion-label>
+          </ion-item>
+          <!---Input field phone-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.lablePhone}}</ion-label>
+            <ion-input required placeholder="{{data.phone}}" type="text" pattern="[a-zA-Z ]*" required [(ngModel)]="phone" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isTitleValid">{{data.errorPhone}}</ion-label>
+          </ion-item>
+          <!---Input field title-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.lableTitle}}</ion-label>
+            <ion-input required placeholder="{{data.userTitle}}" type="text" pattern="[a-zA-Z ]*" required [(ngModel)]="title" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isTitleValid">{{data.errorTitle}}</ion-label>
+          </ion-item>
+          <!---Input field first_name-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.lableFirst_name}}</ion-label>
+            <ion-input required placeholder="{{data.first_name}}" type="text" pattern="[a-zA-Z ]*" required [(ngModel)]="first_name" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isTitleValid">{{data.errorFirst_name}}</ion-label>
+          </ion-item>
+          <!---Input field last_name-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.lableLast_name}}</ion-label>
+            <ion-input required placeholder="{{data.last_name}}" type="text" pattern="[a-zA-Z ]*" required [(ngModel)]="last_name" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isTitleValid">{{data.errorLast_name}}</ion-label>
+          </ion-item>
+          <!---Input field country-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.lableCountry}}</ion-label>
+            <ion-input required placeholder="{{data.country}}" type="text" pattern="[a-zA-Z ]*" required [(ngModel)]="country" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isCountryValid">{{data.errorCountry}}</ion-label>
+          </ion-item>
+          <!---Input field city-->
+          <ion-item transparent>
+            <ion-label stacked>{{data.lableCity}}</ion-label>
+            <ion-input required placeholder="{{data.city}}" type="text" pattern="[a-zA-Z ]*" required [(ngModel)]="city" [ngModelOptions]="{standalone: true}"></ion-input>
+            <ion-label error-field no-margin *ngIf="!isCityValid">{{data.errorCity}}</ion-label>
+          </ion-item>
+          <!---Register button-->
+          <button ion-button margin-bottom float-right clear button-clear no-padding text-capitalize (click)="onEvent('onRegister')">{{data.register}}</button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

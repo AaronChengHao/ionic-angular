@@ -1,24 +1,30 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 import {HomeService} from "./homeService";
+import {AppConfig} from "../../app/app.config";
+import {UserService} from "../../services/UserService";
 
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+    selector: 'page-home',
+    templateUrl: 'home.html'
 })
 export class HomePage {
-    homeService: any;
-  constructor(public navCtrl: NavController) {
-    this.homeService = new HomeService();
-  }
+    user: object = {};
 
-  getHomeInfo(){
-    console.log(this.homeService)
-    this.homeService.getHomeInfo().then(res => {
-      console.log(res)
-    });
-  }
+    constructor(public navCtrl: NavController, private homeService: HomeService,private userService:UserService) {
+
+    }
+    ionViewDidEnter(){
+        this.userService.getUserInfo(user => {
+            if (user) this.user = user;
+
+        })
+    }
+
+    getHomeInfo() {
+
+    }
 
 
 }

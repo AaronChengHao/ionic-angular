@@ -10,6 +10,7 @@ export class HomeService{
     }
 
     getHomeInfo(){
+        console.log(this.httpService);
         return this.httpService.get(PATH_API,{});
     }
 

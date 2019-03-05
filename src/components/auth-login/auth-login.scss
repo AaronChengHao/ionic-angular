@@ -1,0 +1,100 @@
+/*  #Style Login + logo 1
+================================================*/
+
+login-layout-1 {
+  .scroll-content {
+    padding-bottom: 0 !important;
+
+    ion-grid {
+      height: 100%;
+      padding: 0 !important;
+
+      ion-row {
+        height: 100%;
+        // Settings Logo
+        img {
+          max-width: 72px;
+          max-height: 72px;
+          display: block;
+          border-radius: 8px;
+        }
+        // Settings login Title
+        [login-title] {
+          color: color($loginPage, login-title-logo-1);
+          margin-right: 35% !important;
+        }
+        // Settings login Subtitle
+        [login-subtitle] {
+          color: color($loginPage, login-subtitle-logo-1);
+        }
+        // Settings Form
+        form {
+          ion-item {
+            padding-left: 0 !important;
+            padding-bottom: 15px !important;
+
+            [error-field] {
+              margin: 0 !important;
+              position: absolute !important;
+              bottom: 0 !important;
+              right: 5px !important;
+              font-size: $h6-font-size;
+            }
+
+            .item-inner {
+              border-bottom: none !important;
+              box-shadow: none !important;
+              padding-right: 0 !important;
+            }
+
+            ion-input {
+              background: theme-colors('mainColors', 'primary') !important;
+              box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
+              margin: 9px 10px !important;
+              padding: 5px 10px !important;
+              width: calc(100% - 9px);
+              border-radius: 5px;
+              z-index: 999;
+
+              .input-cover {
+                display: none;
+              }
+            }
+
+            ion-label {
+              margin: 0 5px !important;
+            }
+          }
+
+          [stacked] {
+            font-size: 10px !important;
+          }
+
+          [description] {
+            font-size: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+
+            a {
+              color: theme-colors('textColors', 'accent') !important;
+            }
+
+            p {
+              color: theme-colors('textColors', 'primary') !important;
+            }
+          }
+          // Setting Login Button
+          [default-button] {
+            margin: 80px 0 10px;
+          }
+          // Setting Facebook Button
+          [login-button] {
+            color: theme-colors('textColors', 'primary') !important;
+            background: theme-colors('mainColors', 'primary') !important;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

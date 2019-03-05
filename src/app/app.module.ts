@@ -11,10 +11,13 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
-// http request
 import {HttpService} from '../providers/HttpService';
 import {HttpModule} from '@angular/http';
 import {HomeService} from "../pages/home/homeService";
+
+import {IonicStorageModule} from '@ionic/storage';
+import {AuthService} from "../services/AuthService";
+import {UserService} from "../services/UserService";
 
 @NgModule({
     declarations: [
@@ -27,7 +30,8 @@ import {HomeService} from "../pages/home/homeService";
     imports: [
         BrowserModule,
         IonicModule.forRoot(MyApp),
-        HttpModule
+        HttpModule,
+        IonicStorageModule.forRoot()
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -42,7 +46,9 @@ import {HomeService} from "../pages/home/homeService";
         SplashScreen,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         HttpService,
-        HomeService
+        HomeService,
+        AuthService,
+        UserService
     ]
 })
 export class AppModule {
